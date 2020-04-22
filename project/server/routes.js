@@ -13,7 +13,9 @@ var connection = mysql.createPool(config);
 function getHomepage(req, res) {
 
   var query = `
-    SELECT 115
+  Select n.company,d.revenue from data_2018 d JOIN nasdaq_list n
+on d.ticker = n.ticker
+ORDER BY revenue DESC;
   `;
   connection.query(query, function(err, rows, fields) {
     if (err) console.log(err);

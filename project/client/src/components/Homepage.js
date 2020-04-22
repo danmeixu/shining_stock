@@ -37,8 +37,8 @@ export default class Homepage extends React.Component {
       // A button which triggers the showMovies function for each genre.
       let genreDivs = genreList.map((genreObj, i) =>
       <div key={i} className="popularstock">
-       <div className="name">abc</div>
-       <div className="rating">1500</div>
+       <div className="name">{genreObj.company}</div>
+       <div className="rating">{genreObj.revenue}</div>
        </div>
       );
 
@@ -105,7 +105,7 @@ export default class Homepage extends React.Component {
             <div className="homepage-container">
             <div className="stock-header">
               <div className="header-lg"><strong>Name</strong></div>
-              <div className="header"><strong>10yrs growth rate</strong></div>
+              <div className="header"><strong>Revenue</strong></div>
 
             </div>
             <div className="results-container" id="results">
@@ -114,7 +114,7 @@ export default class Homepage extends React.Component {
             </div>
           </div>
 
-      
+
         </div>
       </div>
     );
