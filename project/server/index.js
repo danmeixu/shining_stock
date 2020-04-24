@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 // The route localhost:8081/genres is registered to the function
 // routes.getAllGenres, specified in routes.js.
 app.get('/homepage', routes.getHomepage);
-
+//app.get('/homepage/second/', routes.getHomepageSecond);
 
 
 

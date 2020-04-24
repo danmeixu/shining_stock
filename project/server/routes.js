@@ -1,3 +1,4 @@
+
 var config = require('./db-config.js');
 var mysql = require('mysql');
 
@@ -9,13 +10,13 @@ var connection = mysql.createPool(config);
 /* -------------------------------------------------- */
 
 
-/* ---- Q1a (Dashboard) ---- */
-function getHomepage(req, res) {
 
+function getHomepage(req, res) {
   var query = `
   Select n.company,d.revenue from data_2018 d JOIN nasdaq_list n
 on d.ticker = n.ticker
-ORDER BY revenue DESC;
+ORDER BY revenue DESC
+LIMIT 5;
   `;
   connection.query(query, function(err, rows, fields) {
     if (err) console.log(err);
@@ -26,6 +27,20 @@ ORDER BY revenue DESC;
   });
 };
 
+function getHomepageSecond(req, res) {
+  var query = `
+  SELECT c.company,n.date, n.open, n.high, n.low,n.close
+from nasdaq_historical_prices_daily n JOIN nasdaq_list c ON c.ticker = n.ticker
+WHERE company = "Apple" and date ="2020-02-03";
+  `;
+  connection.query(query, function(err, rows, fields) {
+    if (err) console.log(err);
+    else {
+      console.log(rows);
+      res.json(rows);
+    }
+  });
+};
 
 
 /* ---- Q2 (Recommendations) ---- */
