@@ -4,13 +4,13 @@
   /* margin-top: 10px; */
 }
 
-.header-container .headers, .results-container .movieResults {
+.header-container .headers, .results-container .stockResults {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   height: 40px;
 }
 
-.movieResults .title, .movieResults .id, .movieResults .rating, .movieResults .votes, .headers .header {
+.stockResults .ticker, .stockResults .name, .stockResults .sector, .stockResults .open, .stockResults .high, .headers .header {
   flex: 1 0 25%;
 }
