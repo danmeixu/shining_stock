@@ -13,7 +13,7 @@ var connection = mysql.createPool(config);
 
 function getHomepage(req, res) {
   var query = `
-  Select n.company,d.revenue from data_2018 d JOIN nasdaq_list n
+  Select n.company,d.revenue from data_2018 d JOIN company n
 on d.ticker = n.ticker
 ORDER BY revenue DESC
 LIMIT 5;
