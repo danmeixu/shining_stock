@@ -19,13 +19,13 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.get('/homepage', routes.getHomepage);
 //app.get('/homepage/second/', routes.getHomepageSecond);
 
-
+app.get('/homepage/second',routes.getRecs);
 
 
 
 
 /* ---- Q2 (Recommendations) ---- */
-app.get('/recommendations', routes.getRecs);
+app.get('/recommendations', routes.need);
 
 
 
