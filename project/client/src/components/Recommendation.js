@@ -39,7 +39,7 @@ export default class Recommendations extends React.Component {
 				console.log(err);
 			}).then(recList => {
 					let recDivs = recList.map((rec, i) =>
-						<RecommendationsRow key={i} rec={rec}></RecommendationsRow>				
+						<RecommendationsRow key={i} rec={rec}></RecommendationsRow>
 						);
 				this.setState({
 					recStocks: recDivs
@@ -50,7 +50,7 @@ export default class Recommendations extends React.Component {
 			});
 	}
 
-	
+
 	render() {
 
 		return (

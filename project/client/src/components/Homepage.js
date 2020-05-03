@@ -34,12 +34,13 @@ export default class Homepage extends React.Component {
       console.log(err);
     }).then(genreList => {
       if (!genreList) return;
-      // Map each genreObj in genreList to an HTML element:
-      // A button which triggers the showMovies function for each genre.
+
       let genreDivs = genreList.map((genreObj, i) =>
       <div key={i} className="popularstock">
        <div className="name">{genreObj.company}</div>
        <div className="rating">{genreObj.revenue}</div>
+       <div className="rating">{genreObj.Revenue_Growth}</div>
+       <div className="rating">{genreObj.Gross_Profit}</div>
        </div>
       );
 
@@ -106,12 +107,13 @@ export default class Homepage extends React.Component {
         <br></br>
         <div className="container movies-container">
           <div className="jumbotron">
-            <div className="h5">Most Popular Stocks</div>
+            <div className="h5">Most Popular Stocks （Revenue）</div>
             <div className="homepage-container">
             <div className="stock-header">
               <div className="header-lg"><strong>Name</strong></div>
               <div className="header"><strong>Revenue</strong></div>
-
+              <div className="header"><strong>Revenue Growth</strong></div>
+              <div className="header"><strong>Growth Profit</strong></div>
             </div>
             <div className="results-container" id="results">
               {this.state.stocks}

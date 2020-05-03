@@ -4,5 +4,6 @@ module.exports = {
   user: "admin",
   password: "550project123",
   port:1521,
-  database: "STOCKMARKETDB"
+  database: "STOCKMARKETDB",
+  multipleStatements:true
 };

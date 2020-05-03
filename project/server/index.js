@@ -16,9 +16,6 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 
 
-/* ---- (Dashboard) ---- */
-// The route localhost:8081/genres is registered to the function
-// routes.getAllGenres, specified in routes.js.
 app.get('/homepage', routes.getHomepage);
 //app.get('/homepage/second/', routes.getHomepageSecond);
 
@@ -28,16 +25,11 @@ app.get('/homepage', routes.getHomepage);
 
 
 /* ---- Q2 (Recommendations) ---- */
-app.get('/recommendations/', routes.getRecs);
+app.get('/recommendations', routes.getRecs);
 
 
 
 
-
-
-
-/* ---- Q3b (Best Genre) ---- */
-app.get('/trending',routes.bestGenresPerDecade);
 
 
 

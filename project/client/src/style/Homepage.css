@@ -26,7 +26,7 @@
 }
 
 .popularstock .name,.popularstock .rating, .stock-header .header-lg {
-  flex: 1 0 50%;
+  flex: 1 0 20%;
 }
 
 .stock-header .header, .popularstock .rating {
