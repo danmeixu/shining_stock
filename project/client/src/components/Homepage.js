@@ -16,6 +16,7 @@ export default class Homepage extends React.Component {
       info:[]
 
     }
+    	this.showInfo= this.showInfo.bind(this);
 
   //  this.showStocks = this.showStocks.bind(this);
   }
@@ -74,13 +75,12 @@ export default class Homepage extends React.Component {
       // Map each genreObj in genreList to an HTML element:
       // A button which triggers the showMovies function for each genre.
       let genreInfo = genreList.map((genreObj, i) =>
-      <div key={i} className="stockinfo">
-       <div className="company">{genreObj.company}</div>
-       <div className="date">{genreObj.date}</div>
-       <div className="high">{genreObj.high}</div>
-       <div className="low">{genreObj.low}</div>
-       <div className="open">{genreObj.open}</div>
-       <div className="close">{genreObj.close}</div>
+      <div key={i} className="popularstock">
+       <div className="name">{genreObj.company}</div>
+       <div className="rating">{genreObj.date}</div>
+       <div className="rating">{genreObj.high}</div>
+       <div className="rating">{genreObj.low}</div>
+
        </div>
       );
 
@@ -120,8 +120,27 @@ export default class Homepage extends React.Component {
                 </div>
             </div>
           </div>
-
+        <button id="submitMovieBtn" className="submit-btn" onClick={this.showInfo}>Get More</button>
         </div>
+        <br></br>
+
+           <div className="container movies-container">
+             <div className="jumbotron">
+               <div className="h5">Details about the most popular stocks</div>
+               <div className="homepage-container">
+               <div className="stock-header">
+                 <div className="header-lg"><strong>Name</strong></div>
+                 <div className="header"><strong>Date</strong></div>
+                 <div className="header"><strong>High</strong></div>
+                 <div className="header"><strong>Low</strong></div>
+
+               </div>
+               <div className="results-container" id="results">
+                 {this.state.info}
+                   </div>
+               </div>
+             </div>
+           </div>
       </div>
     );
   }

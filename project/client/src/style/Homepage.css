@@ -25,10 +25,10 @@
   height: 40px;
 }
 
-.popularstock .name,.popularstock .rating, .stock-header .header-lg {
+.popularstock .name,.popularstock .rating,.stockinfo .rating, .stock-header .header-lg {
   flex: 1 0 20%;
 }
 
-.stock-header .header, .popularstock .rating {
+.stock-header .header, .popularstock .rating,.stockinfo .rating {
   flex: 1 0 25%;
 }
