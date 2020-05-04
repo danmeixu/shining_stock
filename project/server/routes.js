@@ -97,7 +97,7 @@ function bestStocksRiskFirst(req, res) {
     From data_2018) AND f.Revenue_Growth >= (
     Select Revenue_Growth * 1.2 
     FROM 2017_Financial_Data f4
-    WHERE f4.ticker = f.ticker) AND d.high < 50
+    WHERE f4.ticker = f.ticker) AND d.open < 50
     ORDER BY d.high
     LIMIT 20;
   `;
