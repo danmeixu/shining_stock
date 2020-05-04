@@ -58,35 +58,45 @@ export default class BestStocks extends React.Component {
 	} 
 
 	render() {
-
+		const hStyle = {
+			backgroundColor: "lightblue",
+      		padding: "10px",
+			fontFamily: "Arial",
+			textAlign: "center",
+			color: "black"
+		};
 		return (
 			<div className="BestStocks">
 				<PageNavbar active="beststocks" />
 
-				<div className="container beststocks-container">
-			      <div className="jumbotron">
-			        <div className="h5">Best Stocks</div>
+				<div className="container beststocks-container" style={{backgroundColor: "lightblue"}}>
+			      <div className="jumbotron" style={{backgroundColor: "lightblue"}}>
+			        <h2 style={hStyle}>Choose your type of stocks and get recommendations instantly</h2>
 
 			        <div className="select-container">
 			          <div className="dropdown-container">
+						<h6> How would you describe yourself as an investor? </h6>
 			            <select value={this.state.selectedType} onChange={this.handleTypeChange} className="dropdown" id="stocksDropdown">
-			            	<option selected disabled value=''>Type</option>
-			            	<option value="risk-taking">risk-taking</option>
-			            	<option value="stable-seeking">stable-seeking</option>
+			            	<option selected disabled value=''>I am the type of investor who ... </option>
+			            	<option value="risk-taking">take reasonable risks exchanging for bigger profits.</option>
+			            	<option value="stable-seeking">expect stable returns on my investment.</option>
 			            </select>
+						<h5></h5>
+						<h6> How price range are you looking to buy within? </h6>
 			            <select value={this.state.selectedPrice} onChange={this.handlePriceChange} className="dropdown" id="stocksDropdown">
-			            	<option selected disabled value=''>Price</option>
-			            	<option value="less">&lt; 50</option>
-			            	<option value="between">50 - 100</option>
-			            	<option value="more">&gt; 100</option>
+			            	<option selected disabled value=''>Price Per Share</option>
+			            	<option value="less"> $50 or less </option>
+			            	<option value="between"> $50 to $100 </option>
+			            	<option value="more">$100 or more  </option>
 			            </select>
-
-			            <button className="submit-btn" class="btn btn-outline-dark btn-sm" id="changeSubmitBtn" onClick={this.submitChange}>Submit</button>
+						<h5></h5>
+			            <button style={{backgroundColor: "skyblue"}} className="submit-btn" class="btn btn-outline-dark btn-sm" id="changeSubmitBtn" onClick={this.submitChange}>Submit</button>
 			          </div>
 			        </div>
 			      </div>
 			      <div className="jumbotron">
 			        <div className="stocks-container">
+						<h4>Stocks to be on the look out for: </h4>
 			          <div className="stock">
 			            <div className="header"><strong>Ticker</strong></div>
 			    		<div className="header"><strong>Stock Name</strong></div>

@@ -54,22 +54,31 @@ export default class Recommendations extends React.Component {
 
 	
 	render() {
-
+		const hStyle = {
+			backgroundColor: "lightblue",
+      		padding: "10px",
+			fontFamily: "Arial",
+			textAlign: "center",
+			color: "black"
+		};
 		return (
 			<div className="Recommendations">
 				<PageNavbar active="recommendations" />
 
 			    <div className="container recommendations-container">
-			    	<div className="jumbotron">
-			    		<div className="h5">Recommendations</div>
+			    	<div className="jumbotron" style={hStyle}>
+			    		<div className="h2">Have a stock in mind already?</div>
 			    		<br></br>
+						<div className="h6">Enter a stock that you think have potential. We'll recommend based on that.</div>
 			    		<div className="input-container">
-			    			<input type='text' class="form-control form-control-lg" placeholder="Enter Stock Name" value={this.state.stockName} onChange={this.handleStockNameChange} id="stockName" className="stock-input"/>
-			    			<button id="submitStockBtn" class="btn btn-outline-dark btn-sm" onClick={this.submitStock}>Submit</button>
+			    			<input type='text' class="form-control form-control-lg" placeholder="Enter a ticker, e.g. V" value={this.state.stockName} onChange={this.handleStockNameChange} id="stockName" className="stock-input"/>
+			    			<br></br>
+							<br></br>
+							<button id="submitStockBtn" class="btn btn-outline-dark btn-sm" onClick={this.submitStock}>Submit</button>
 			    		</div>
 			    		<div className="header-container">
 			    		<br></br>
-			    			<div class="font-italic">You may like ...</div>
+			    			<div class="h5">We think you may like ...</div>
 			    			<div className="headers">
 			    				<div className="header"><strong>Ticker</strong></div>
 			    				<div className="header"><strong>Stock Name</strong></div>

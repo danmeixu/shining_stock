@@ -77,6 +77,7 @@ function getRecStock(req, res) {
         WHERE c4.sector = c.sector)
       AND f1.Cost_Revenue <= (SELECT Cost_Revenue FROM 2017_Financial_Data F5 WHERE F5.ticker = '${inputStock}')
         AND d.date = (SELECT MAX(date) FROM daily_Prices d2 WHERE d.ticker = d2.ticker)
+      AND f1.ticker <> '${inputStock}'
     ORDER BY c.company
     LIMIT 20;
 
@@ -170,21 +171,20 @@ function bestStocksRiskThird(req, res) {
 
 function bestStocksStableFirst(req, res) {
   var query = `
-      Select c.ticker, c.company, c.sector, d.open, d.high
-      From Company c JOIN data_2018 f ON c.ticker = f.ticker JOIN 2017_Financial_Data f2 ON f.ticker = f2.ticker JOIN daily_Prices d ON d.ticker = f.ticker
-      WHERE f.cost_revenue < (
-      SELECT AVG(cost_revenue)
-      FROM 2017_Financial_Data) AND f.revenue_growth >= (
-      Select AVG(revenue_growth) as avg_rvn
-      From data_2018) AND f.Revenue_Growth >= (
-      Select Revenue_Growth * 1.2 
-      FROM 2017_Financial_Data f4
-      WHERE f4.ticker = f.ticker) AND d.date = (
-      select MAX(date) 
-      from daily_Prices d2
-      where d2.ticker = d.ticker) AND d.high < 50
-      ORDER BY d.high
-      LIMIT 20;
+    Select c.ticker, c.company, c.sector, d.open, d.high
+    From Company c JOIN data_2018 f ON c.ticker = f.ticker JOIN 2017_Financial_Data f2 ON f.ticker = f2.ticker JOIN daily_Prices d ON d.ticker = f.ticker
+    WHERE f.revenue >= (
+    SELECT AVG(revenue)
+    FROM 2017_Financial_Data) AND f.revenue >= (
+    Select AVG(revenue) as avg_rvn
+    From data_2018) AND f.gross_profit >= (
+    Select gross_profit * 1.1
+    FROM 2017_Financial_Data f4
+    WHERE f4.ticker = f.ticker) AND d.date = (
+    select MAX(date) 
+    from daily_Prices d2
+    where d2.ticker = d.ticker) AND d.open < 50
+    ORDER BY d.high DESC
   `;
   connection.query(query, function (err, rows, fields) {
     if (err) console.log(err);
@@ -196,21 +196,20 @@ function bestStocksStableFirst(req, res) {
 
 function bestStocksStableSecond(req, res) {
   var query = `
-      Select c.ticker, c.company, c.sector, d.open, d.high
-      From Company c JOIN data_2018 f ON c.ticker = f.ticker JOIN 2017_Financial_Data f2 ON f.ticker = f2.ticker JOIN daily_Prices d ON d.ticker = f.ticker
-      WHERE f.cost_revenue < (
-      SELECT AVG(cost_revenue)
-      FROM 2017_Financial_Data) AND f.revenue_growth >= (
-      Select AVG(revenue_growth) as avg_rvn
-      From data_2018) AND f.Revenue_Growth >= (
-      Select Revenue_Growth * 1.2 
-      FROM 2017_Financial_Data f4
-      WHERE f4.ticker = f.ticker) AND d.date = (
-      select MAX(date) 
-      from daily_Prices d2
-      where d2.ticker = d.ticker) AND d.high >= 50 AND d.high <= 100
-      ORDER BY d.high
-      LIMIT 20;
+    Select c.ticker, c.company, c.sector, d.open, d.high
+    From Company c JOIN data_2018 f ON c.ticker = f.ticker JOIN 2017_Financial_Data f2 ON f.ticker = f2.ticker JOIN daily_Prices d ON d.ticker = f.ticker
+    WHERE f.revenue >= (
+    SELECT AVG(revenue)
+    FROM 2017_Financial_Data) AND f.revenue >= (
+    Select AVG(revenue) as avg_rvn
+    From data_2018) AND f.gross_profit >= (
+    Select gross_profit * 1.1
+    FROM 2017_Financial_Data f4
+    WHERE f4.ticker = f.ticker) AND d.date = (
+    select MAX(date) 
+    from daily_Prices d2
+    where d2.ticker = d.ticker) AND d.open >= 50 AND d.open <= 100
+    ORDER BY d.high DESC
   `;
   connection.query(query, function (err, rows, fields) {
     if (err) console.log(err);
@@ -222,21 +221,21 @@ function bestStocksStableSecond(req, res) {
 
 function bestStocksStableThird(req, res) {
   var query = `
-      Select c.ticker, c.company, c.sector, d.open, d.high
-      From Company c JOIN data_2018 f ON c.ticker = f.ticker JOIN 2017_Financial_Data f2 ON f.ticker = f2.ticker JOIN daily_Prices d ON d.ticker = f.ticker
-      WHERE f.cost_revenue < (
-      SELECT AVG(cost_revenue)
-      FROM 2017_Financial_Data) AND f.revenue_growth >= (
-      Select AVG(revenue_growth) as avg_rvn
-      From data_2018) AND f.Revenue_Growth >= (
-      Select Revenue_Growth * 1.2 
-      FROM 2017_Financial_Data f4
-      WHERE f4.ticker = f.ticker) AND d.date = (
-      select MAX(date) 
-      from daily_Prices d2
-      where d2.ticker = d.ticker) AND d.high > 100
-      ORDER BY d.high
-      LIMIT 20;
+    Select c.ticker, c.company, c.sector, d.open, d.high
+    From Company c JOIN data_2018 f ON c.ticker = f.ticker JOIN 2017_Financial_Data f2 ON f.ticker = f2.ticker JOIN daily_Prices d ON d.ticker = f.ticker
+    WHERE f.revenue >= (
+    SELECT AVG(revenue)
+    FROM 2017_Financial_Data) AND f.revenue >= (
+    Select AVG(revenue) as avg_rvn
+    From data_2018) AND f.gross_profit >= (
+    Select gross_profit * 1.1
+    FROM 2017_Financial_Data f4
+    WHERE f4.ticker = f.ticker) AND d.date = (
+    select MAX(date) 
+    from daily_Prices d2
+    where d2.ticker = d.ticker) AND d.open > 100
+    ORDER BY d.high DESC
+    LIMIT 20;
   `;
   connection.query(query, function (err, rows, fields) {
     if (err) console.log(err);
