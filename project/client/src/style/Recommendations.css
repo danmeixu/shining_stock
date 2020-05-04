@@ -1,7 +1,7 @@
 .header-container, .results-container {
   display: flex;
   flex-flow: column wrap;
-  /* margin-top: 10px; */
+  margin-top: 2px; 
 }
 
 .header-container .headers, .results-container .stockResults {
@@ -12,5 +12,5 @@
 }
 
 .stockResults .ticker, .stockResults .name, .stockResults .sector, .stockResults .open, .stockResults .high, .headers .header {
-  flex: 1 0 25%;
+  flex: 1 0 20%;
 }

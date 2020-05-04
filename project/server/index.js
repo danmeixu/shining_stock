@@ -24,17 +24,26 @@ app.get('/homepage/second',routes.getRecs);
 
 
 
-/* ---- Q2 (Recommendations) ---- */
+/* ---- (Recommendations) ---- */
 app.get('/recommendations', routes.need);
 
 
 
+app.get('/recommendations/:stock', routes.getRecStock);
 
 
 
+app.get('/beststocks/risk-taking-less', routes.bestStocksRiskFirst);
 
+app.get('/beststocks/risk-taking-between', routes.bestStocksRiskSecond);
 
+app.get('/beststocks/risk-taking-more', routes.bestStocksRiskThird);
 
+app.get('/beststocks/stable-seeking-less', routes.bestStocksStableFirst);
+
+app.get('/beststocks/stable-seeking-between', routes.bestStocksStableSecond);
+
+app.get('/beststocks/stable-seeking-more', routes.bestStocksStableThird);
 
 
 app.listen(8081, () => {

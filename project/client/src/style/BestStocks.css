@@ -13,5 +13,5 @@
 }
 
 .stock .header, .stockResults .ticker, .stockResults .name, .stockResults .sector, .stockResults .open, .stockResults .high {
-  flex: 1 0 25%;
+  flex: 1 0 20%;
 }

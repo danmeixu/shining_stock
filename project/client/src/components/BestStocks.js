@@ -4,29 +4,36 @@ import BestStockRow from './BestStockRow';
 import '../style/BestStocks.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default class BestGenre extends React.Component {
+export default class BestStocks extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
 			selectedType: "",
-			types: ["risk-taking", "stable-seeking"],
+			selectedPrice: "",
 			stocks: []
 		};
 
-		this.submitType = this.submitType.bind(this);
-		this.handleChange = this.handleChange.bind(this);
+		this.submitChange = this.submitChange.bind(this);
+		this.handleTypeChange = this.handleTypeChange.bind(this);
+		this.handlePriceChange = this.handlePriceChange.bind(this);
 	}
 
-	handleChange(e) {
+	handleTypeChange(e) {
 		this.setState({
 			selectedType: e.target.value
 		});
 	}
 
-	submitType() {
+	handlePriceChange(e) {
+		this.setState({
+			selectedPrice: e.target.value
+		});
+	}
+
+	submitChange() {
 		// Send an HTTP request to the server.
-		fetch(`http://localhost:8081/beststocks/${this.state.selectedType}`,
+		fetch(`http://localhost:8081/beststocks/${this.state.selectedType}-${this.state.selectedPrice}`,
 			{
 				method: 'GET' // The type of HTTP request.
 			}).then(res => {
@@ -40,9 +47,6 @@ export default class BestGenre extends React.Component {
 				let bestDivs = bestList.map((bestStock, i) =>
 					<BestStockRow key={i} bestStock={bestStock}></BestStockRow>
 				);
-
-
-
 				// Set the state of the stocks list to the value returned by the HTTP response from the server.
 				this.setState({
 					stocks: bestDivs
@@ -51,7 +55,7 @@ export default class BestGenre extends React.Component {
 				// Print the error if there is one.
 				console.log(err);
 			});
-	}
+	} 
 
 	render() {
 
@@ -63,12 +67,21 @@ export default class BestGenre extends React.Component {
 			      <div className="jumbotron">
 			        <div className="h5">Best Stocks</div>
 
-			        <div className="years-container">
+			        <div className="select-container">
 			          <div className="dropdown-container">
-			            <select value={this.state.selectedType} onChange={this.handleChange} className="dropdown" id="stocksDropdown">
-			            	{this.state.types}
+			            <select value={this.state.selectedType} onChange={this.handleTypeChange} className="dropdown" id="stocksDropdown">
+			            	<option selected disabled value=''>Type</option>
+			            	<option value="risk-taking">risk-taking</option>
+			            	<option value="stable-seeking">stable-seeking</option>
 			            </select>
-			            <button className="submit-btn" id="typesSubmitBtn" onClick={this.submitType}>Submit</button>
+			            <select value={this.state.selectedPrice} onChange={this.handlePriceChange} className="dropdown" id="stocksDropdown">
+			            	<option selected disabled value=''>Price</option>
+			            	<option value="less">&lt; 50</option>
+			            	<option value="between">50 - 100</option>
+			            	<option value="more">&gt; 100</option>
+			            </select>
+
+			            <button className="submit-btn" class="btn btn-outline-dark btn-sm" id="changeSubmitBtn" onClick={this.submitChange}>Submit</button>
 			          </div>
 			        </div>
 			      </div>

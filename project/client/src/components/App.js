@@ -5,7 +5,8 @@ import {
 	Switch
 } from 'react-router-dom';
 import Homepage from './Homepage';
-import Recommendations from './Recommendation';
+import Recommendations from './Recommendations';
+import BestStocks from './BestStocks';
 
 export default class App extends React.Component {
 
@@ -32,6 +33,12 @@ export default class App extends React.Component {
 							path="/recommendations"
 							render={() => (
 								<Recommendations />
+							)}
+						/>
+						<Route
+							path="/beststocks"
+							render={() => (
+								<BestStocks />
 							)}
 						/>
 					</Switch>
